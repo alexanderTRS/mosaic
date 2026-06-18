@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.7" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mosaic.Modules.Abstractions\Mosaic.Modules.Abstractions.csproj" />
+    <ProjectReference Include="..\Modules\Content\Mosaic.Modules.Content.Infrastructure\Mosaic.Modules.Content.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Content\Mosaic.Modules.Content.GraphQL\Mosaic.Modules.Content.GraphQL.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Mosaic.Modules.Identity.Infrastructure\Mosaic.Modules.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Identity\Mosaic.Modules.Identity.GraphQL\Mosaic.Modules.Identity.GraphQL.csproj" />
+    <ProjectReference Include="..\Modules\Media\Mosaic.Modules.Media.Infrastructure\Mosaic.Modules.Media.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Media\Mosaic.Modules.Media.GraphQL\Mosaic.Modules.Media.GraphQL.csproj" />
+    <ProjectReference Include="..\Modules\Search\Mosaic.Modules.Search.Infrastructure\Mosaic.Modules.Search.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Search\Mosaic.Modules.Search.GraphQL\Mosaic.Modules.Search.GraphQL.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Mosaic.Api/Mosaic.Api.csproj" />
+    <Project Path="src/Mosaic.Modules.Abstractions/Mosaic.Modules.Abstractions.csproj" />
+    <Project Path="src/Mosaic.SharedKernel/Mosaic.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Content/">
+    <Project Path="src/Modules/Content/Mosaic.Modules.Content.Application/Mosaic.Modules.Content.Application.csproj" />
+    <Project Path="src/Modules/Content/Mosaic.Modules.Content.Domain/Mosaic.Modules.Content.Domain.csproj" />
+    <Project Path="src/Modules/Content/Mosaic.Modules.Content.GraphQL/Mosaic.Modules.Content.GraphQL.csproj" />
+    <Project Path="src/Modules/Content/Mosaic.Modules.Content.Infrastructure/Mosaic.Modules.Content.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Identity/">
+    <Project Path="src/Modules/Identity/Mosaic.Modules.Identity.Application/Mosaic.Modules.Identity.Application.csproj" />
+    <Project Path="src/Modules/Identity/Mosaic.Modules.Identity.Domain/Mosaic.Modules.Identity.Domain.csproj" />
+    <Project Path="src/Modules/Identity/Mosaic.Modules.Identity.GraphQL/Mosaic.Modules.Identity.GraphQL.csproj" />
+    <Project Path="src/Modules/Identity/Mosaic.Modules.Identity.Infrastructure/Mosaic.Modules.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Media/">
+    <Project Path="src/Modules/Media/Mosaic.Modules.Media.Application/Mosaic.Modules.Media.Application.csproj" />
+    <Project Path="src/Modules/Media/Mosaic.Modules.Media.Domain/Mosaic.Modules.Media.Domain.csproj" />
+    <Project Path="src/Modules/Media/Mosaic.Modules.Media.GraphQL/Mosaic.Modules.Media.GraphQL.csproj" />
+    <Project Path="src/Modules/Media/Mosaic.Modules.Media.Infrastructure/Mosaic.Modules.Media.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Search/">
+    <Project Path="src/Modules/Search/Mosaic.Modules.Search.Application/Mosaic.Modules.Search.Application.csproj" />
+    <Project Path="src/Modules/Search/Mosaic.Modules.Search.Domain/Mosaic.Modules.Search.Domain.csproj" />
+    <Project Path="src/Modules/Search/Mosaic.Modules.Search.GraphQL/Mosaic.Modules.Search.GraphQL.csproj" />
+    <Project Path="src/Modules/Search/Mosaic.Modules.Search.Infrastructure/Mosaic.Modules.Search.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Mosaic.Api.IntegrationTests/Mosaic.Api.IntegrationTests.csproj" />
+    <Project Path="tests/Mosaic.Infrastructure.Tests/Mosaic.Infrastructure.Tests.csproj" />
+    <Project Path="tests/Mosaic.Modules.Content.Application.Tests/Mosaic.Modules.Content.Application.Tests.csproj" />
+    <Project Path="tests/Mosaic.Modules.Content.Domain.Tests/Mosaic.Modules.Content.Domain.Tests.csproj" />
+    <Project Path="tests/Mosaic.Modules.Media.Domain.Tests/Mosaic.Modules.Media.Domain.Tests.csproj" />
+    <Project Path="tests/Mosaic.Modules.Search.Application.Tests/Mosaic.Modules.Search.Application.Tests.csproj" />
+  </Folder>
+</Solution>
