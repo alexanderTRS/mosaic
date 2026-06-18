@@ -4,6 +4,10 @@ Headless CMS on ASP.NET Core with runtime content modeling and GraphQL API.
 
 ## Stack
 
+<video src="assets/system_demo.mp4" controls width="100%"></video>
+
+
+
 - .NET 10, ASP.NET Core
 - Hot Chocolate (GraphQL)
 - PostgreSQL + EF Core

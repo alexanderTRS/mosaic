@@ -1,0 +1,440 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type AddContentFieldPayload {
+  contentTypeId: UUID!
+}
+
+"Generated object type for content type 'category' schema version 3."
+type Category {
+  id: UUID!
+  contentTypeId: UUID!
+  contentTypeApiName: String!
+  status: ContentItemStatus!
+  data: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  slug: String
+  title: String
+}
+
+type ContentFieldDetails {
+  id: UUID!
+  apiName: String!
+  displayName: String!
+  kind: FieldKind!
+  localization: LocalizationMode!
+  isRequired: Boolean!
+  settings: ContentFieldSettings!
+  isDeprecated: Boolean!
+}
+
+type ContentFieldSettings {
+  minLength: Int
+  maxLength: Int
+  regexPattern: String
+  minNumber: Decimal
+  maxNumber: Decimal
+  requiredLocales: [String!]!
+  isUnique: Boolean!
+  isRepeatable: Boolean!
+  defaultValue: String
+  relationTargetContentTypeApiName: String
+}
+
+type ContentItem {
+  id: UUID!
+  contentTypeId: UUID!
+  contentTypeApiName: String!
+  status: ContentItemStatus!
+  data: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContentItemVersionDetails {
+  id: UUID!
+  contentItemId: UUID!
+  version: Int!
+  status: ContentItemStatus!
+  data: String!
+  createdAt: DateTime!
+}
+
+type ContentItemsPage {
+  items: [ContentItem!]!
+  totalCount: Int!
+  skip: Int!
+  take: Int!
+}
+
+type ContentTypeDetails {
+  id: UUID!
+  apiName: String!
+  displayName: String!
+  status: ContentTypeStatus!
+  publishedAt: DateTime
+  schemaVersion: Int!
+  fields: [ContentFieldDetails!]!
+}
+
+type CreateContentTypePayload {
+  id: UUID!
+}
+
+type GroupDetails {
+  id: UUID!
+  name: String!
+  displayName: String!
+}
+
+type LocalizedAltTextPayload {
+  locale: String!
+  altText: String!
+}
+
+type LoginResult {
+  accessToken: String!
+  accessTokenExpiresAt: DateTime!
+  userId: UUID!
+  userName: String!
+  isAdministrator: Boolean!
+  canViewGraphQLSchema: Boolean!
+}
+
+type MediaAssetPayload {
+  id: UUID!
+  fileName: String!
+  contentType: String!
+  size: Long!
+  publicUrl: String
+  width: Int
+  height: Int
+  altText: String
+  localizedAltText: [LocalizedAltTextPayload!]!
+  createdAt: DateTime!
+  createdBy: UUID
+}
+
+type Mutation {
+  login(input: LoginInput!): LoginResult! @cost(weight: "10")
+  createUser(input: CreateUserInput!): UserDetails! @cost(weight: "10")
+  grantContentTypeAccess(input: GrantContentTypeAccessInput!): UserDetails! @cost(weight: "10")
+  createRole(input: CreateRoleInput!): RoleDetails! @cost(weight: "10")
+  createServiceAccount(input: CreateServiceAccountInput!): UserDetails! @cost(weight: "10")
+  createServiceAccountToken(input: CreateServiceAccountTokenInput!): ServiceAccountTokenDetails! @cost(weight: "10")
+  createGroup(input: CreateGroupInput!): GroupDetails! @cost(weight: "10")
+  assignRoleToUser(input: AssignRoleToUserInput!): UserDetails! @cost(weight: "10")
+  assignUserToGroup(input: AssignUserToGroupInput!): UserDetails! @cost(weight: "10")
+  assignRoleToGroup(input: AssignRoleToGroupInput!): GroupDetails! @cost(weight: "10")
+  grantRoleContentTypeAccess(input: GrantRoleContentTypeAccessInput!): RoleDetails! @cost(weight: "10")
+  revokeAccessToken(input: RevokeAccessTokenInput!): Boolean! @cost(weight: "10")
+  createContentType(input: CreateContentTypeInput!): CreateContentTypePayload! @cost(weight: "10")
+  addContentField(input: AddContentFieldInput!): AddContentFieldPayload! @cost(weight: "10")
+  publishContentType(input: PublishContentTypeInput!): ContentTypeDetails! @cost(weight: "10")
+  deprecateContentField(input: DeprecateContentFieldInput!): ContentTypeDetails! @cost(weight: "10")
+  createContentItem(input: CreateContentItemInput!): Category! @cost(weight: "10")
+  updateContentItem(input: UpdateContentItemInput!): Category! @cost(weight: "10")
+  archiveContentItem(input: ChangeContentItemStatusInput!): Category! @cost(weight: "10")
+  publishContentItem(input: ChangeContentItemStatusInput!): Category! @cost(weight: "10")
+  unpublishContentItem(input: ChangeContentItemStatusInput!): Category! @cost(weight: "10")
+  uploadMediaAsset(input: UploadMediaAssetInput!): MediaAssetPayload! @cost(weight: "10")
+  updateMediaAssetMetadata(input: UpdateMediaAssetMetadataInput!): MediaAssetPayload! @cost(weight: "10")
+  reindexContentSearch: ReindexContentSearchResult! @cost(weight: "10")
+}
+
+"Generated object type for content type 'product' schema version 8."
+type Product {
+  id: UUID!
+  contentTypeId: UUID!
+  contentTypeApiName: String!
+  status: ContentItemStatus!
+  data: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  category: Category @cost(weight: "10")
+  description: String
+  image: String
+  price: Decimal
+  rating: Decimal
+  stock: Long
+  title: String
+}
+
+type Query {
+  status: String!
+  "Dynamic single-item query for published content type 'category'."
+  category(id: UUID!): Category @cost(weight: "10")
+  "Dynamic collection query for published content type 'category'."
+  categories(status: ContentItemStatus search: String orderBy: String descending: Boolean skip: Int take: Int): [Category!]! @cost(weight: "10")
+  "Dynamic single-item query for published content type 'product'."
+  product(id: UUID!): Product @cost(weight: "10")
+  "Dynamic collection query for published content type 'product'."
+  products(status: ContentItemStatus search: String orderBy: String descending: Boolean skip: Int take: Int): [Product!]! @cost(weight: "10")
+  contentModuleStatus: String!
+  contentTypes: [ContentTypeDetails!]! @cost(weight: "10")
+  contentItems(contentTypeApiName: String): [Category!]! @cost(weight: "10")
+  contentItemsPage(contentTypeApiName: String status: ContentItemStatus search: String orderBy: String descending: Boolean! skip: Int! take: Int!): ContentItemsPage! @cost(weight: "10")
+  contentItem(id: UUID!): Category! @cost(weight: "10")
+  contentItemVersions(id: UUID!): [ContentItemVersionDetails!]! @cost(weight: "10")
+  mediaModuleStatus: String!
+  mediaAssets(skip: Int! take: Int!): [MediaAssetPayload!]! @cost(weight: "10")
+  mediaAsset(id: UUID!): MediaAssetPayload! @cost(weight: "10")
+  searchModuleStatus: String!
+  searchContentItems(query: String! contentTypeApiName: String skip: Int! take: Int!): SearchContentItemsPage! @cost(weight: "10")
+}
+
+type ReindexContentSearchResult {
+  indexedCount: Int!
+}
+
+type RoleDetails {
+  id: UUID!
+  name: String!
+  displayName: String!
+  preset: PermissionPreset!
+  canCreateContentTypes: Boolean!
+  canViewGraphQLSchema: Boolean!
+}
+
+type SearchContentItemResult {
+  id: UUID!
+  contentTypeApiName: String!
+  status: String!
+  data: String!
+  updatedAt: DateTime!
+  score: Float!
+}
+
+type SearchContentItemsPage {
+  items: [SearchContentItemResult!]!
+  contentTypeFacets: [SearchFacetValue!]!
+  statusFacets: [SearchFacetValue!]!
+  totalCount: Int!
+  skip: Int!
+  take: Int!
+}
+
+type SearchFacetValue {
+  value: String!
+  count: Int!
+}
+
+type ServiceAccountTokenDetails {
+  accessToken: String!
+  accessTokenExpiresAt: DateTime!
+  serviceAccountId: UUID!
+  name: String!
+}
+
+type UserDetails {
+  id: UUID!
+  userName: String!
+  isAdministrator: Boolean!
+  canViewGraphQLSchema: Boolean!
+  isServiceAccount: Boolean!
+}
+
+input AddContentFieldInput {
+  contentTypeId: UUID!
+  apiName: String!
+  displayName: String!
+  kind: FieldKind!
+  localization: LocalizationMode!
+  isRequired: Boolean!
+  settings: ContentFieldSettingsInput
+}
+
+input AssignRoleToGroupInput {
+  groupId: UUID!
+  roleId: UUID!
+}
+
+input AssignRoleToUserInput {
+  userId: UUID!
+  roleId: UUID!
+}
+
+input AssignUserToGroupInput {
+  userId: UUID!
+  groupId: UUID!
+}
+
+input ChangeContentItemStatusInput {
+  id: UUID!
+}
+
+input ContentFieldSettingsInput {
+  minLength: Int
+  maxLength: Int
+  regexPattern: String
+  minNumber: Decimal
+  maxNumber: Decimal
+  requiredLocales: [String!]
+  isUnique: Boolean! = false
+  isRepeatable: Boolean! = false
+  defaultValue: String
+  relationTargetContentTypeApiName: String
+}
+
+input CreateContentItemInput {
+  contentTypeApiName: String!
+  data: String!
+}
+
+input CreateContentTypeInput {
+  apiName: String!
+  displayName: String!
+}
+
+input CreateGroupInput {
+  name: String!
+  displayName: String!
+}
+
+input CreateRoleInput {
+  name: String!
+  displayName: String!
+  preset: PermissionPreset!
+  canCreateContentTypes: Boolean!
+  canViewGraphQLSchema: Boolean!
+}
+
+input CreateServiceAccountInput {
+  name: String!
+  displayName: String!
+  canViewGraphQLSchema: Boolean!
+}
+
+input CreateServiceAccountTokenInput {
+  serviceAccountId: UUID!
+  name: String!
+  lifetimeDays: Int!
+}
+
+input CreateUserInput {
+  userName: String!
+  password: String!
+  isAdministrator: Boolean!
+  canViewGraphQLSchema: Boolean!
+}
+
+input DeprecateContentFieldInput {
+  contentTypeId: UUID!
+  fieldApiName: String!
+}
+
+input GrantContentTypeAccessInput {
+  userId: UUID!
+  contentTypeApiName: String!
+  canManageSchema: Boolean!
+  canManageItems: Boolean!
+  canReadItems: Boolean!
+  fieldApiName: String
+  locale: String
+}
+
+input GrantRoleContentTypeAccessInput {
+  roleId: UUID!
+  contentTypeApiName: String!
+  canManageSchema: Boolean!
+  canManageItems: Boolean!
+  canReadItems: Boolean!
+  fieldApiName: String
+  locale: String
+}
+
+input LocalizedAltTextInput {
+  locale: String!
+  altText: String!
+}
+
+input LoginInput {
+  userName: String!
+  password: String!
+}
+
+input PublishContentTypeInput {
+  contentTypeId: UUID!
+}
+
+input RevokeAccessTokenInput {
+  accessToken: String!
+}
+
+input UpdateContentItemInput {
+  id: UUID!
+  data: String!
+}
+
+input UpdateMediaAssetMetadataInput {
+  id: UUID!
+  altText: String
+  localizedAltText: [LocalizedAltTextInput!]
+}
+
+input UploadMediaAssetInput {
+  fileName: String!
+  contentType: String!
+  base64Content: String!
+  width: Int
+  height: Int
+  altText: String
+  localizedAltText: [LocalizedAltTextInput!]
+}
+
+enum ContentItemStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ContentTypeStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum FieldKind {
+  STRING
+  TEXT
+  BOOLEAN
+  INTEGER
+  DECIMAL
+  DATE_TIME
+  JSON
+  MEDIA
+  RELATION
+}
+
+enum LocalizationMode {
+  NON_LOCALIZED
+  LOCALIZED
+}
+
+enum PermissionPreset {
+  CUSTOM
+  ADMINISTRATOR
+  DEVELOPER
+  CONTENT_MANAGER
+  EDITOR
+  VIEWER
+}
+
+"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
+directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION
+
+"The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+
+"The `Decimal` scalar type represents a decimal floating-point number."
+scalar Decimal
+
+"The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1."
+scalar Long
+
+scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")
