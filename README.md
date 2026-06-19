@@ -2,6 +2,8 @@
 
 Headless CMS on ASP.NET Core with runtime content modeling and GraphQL API.
 
+https://github.com/user-attachments/assets/2fa6814f-fadd-4fc8-b5d7-e9ab44b3c577
+
 ## Stack
 
 - .NET 10, ASP.NET Core
